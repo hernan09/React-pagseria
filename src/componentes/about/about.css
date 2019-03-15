@@ -1,0 +1,288 @@
+#about {
+    width: 100%;
+    height: 100%;
+    background-image: url("/imagenes/walpaper.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.6s;
+}
+
+#block1 {
+    width: 50%;
+}
+
+#block2 {
+    width: 50%;
+}
+
+#h1bout:hover {
+    -webkit-animation: neon2 1s ease-in-out infinite alternate;
+    -moz-animation: neon2 1s ease-in-out infinite alternate;
+    animation: neon2 1s ease-in-out infinite alternate;
+}
+
+#block3 {
+    color: orange;
+    background: #00B4DB;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0083B0, #00B4DB);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#block3>div {
+    width: 100%;
+    height: 100px;
+}
+
+#card:hover {
+    transform: scale(0.9);
+    transition: all ease 0.6;
+}
+
+#h1panel:hover {
+    transform: scale(0.9);
+    color: orangered;
+    transition: all ease 0.7s;
+}
+
+#h1panel2:hover {
+    transform: scale(0.9);
+    transition: all ease 0.7s;
+}
+
+#h1panel3:hover {
+    transform: scale(0.9);
+    transition: all ease 0.7s;
+}
+
+#formabout {
+    animation: fadetable ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode: forwards;
+    /*when the spec is finished*/
+    -webkit-animation: fadetable ease 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode: forwards;
+    /*Chrome 16+, Safari 4+*/
+    -moz-animation: fadetable ease 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode: forwards;
+    /*FF 5+*/
+    -o-animation: fadetable ease 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode: forwards;
+    /*Not implemented yet*/
+    -ms-animation: fadetable ease 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode: forwards;
+}
+
+#tabla {
+    width: 100%;
+    animation: fadetable ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode: forwards;
+    /*when the spec is finished*/
+    -webkit-animation: fadetable ease 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode: forwards;
+    /*Chrome 16+, Safari 4+*/
+    -moz-animation: fadetable ease 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode: forwards;
+    /*FF 5+*/
+    -o-animation: fadetable ease 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode: forwards;
+    /*Not implemented yet*/
+    -ms-animation: fadetable ease 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode: forwards;
+    /*IE 10+*/
+}
+
+#li1:visited {
+    text-decoration: black;
+}
+
+#li2:visited {
+    text-decoration: black;
+}
+
+#li3:visited {
+    text-decoration: black;
+}
+
+#iframe2 {
+    animation: ifram ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode: forwards;
+    /*when the spec is finished*/
+    -webkit-animation: ifram ease 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode: forwards;
+    /*Chrome 16+, Safari 4+*/
+    -moz-animation: ifram ease 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode: forwards;
+    /*FF 5+*/
+    -o-animation: ifram ease 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode: forwards;
+    /*Not implemented yet*/
+    -ms-animation: ifram ease 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode: forwards;
+    /*IE 10+*/
+}
+
+@keyframes fadetable {
+    0% {
+        opacity: 0;
+        transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
+}
+
+@-moz-keyframes fadetable {
+    0% {
+        opacity: 0;
+        -moz-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: translate(0px, 0px);
+    }
+}
+
+@-webkit-keyframes fadetable {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0px, 0px);
+    }
+}
+
+@-o-keyframes fadetable {
+    0% {
+        opacity: 0;
+        -o-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -o-transform: translate(0px, 0px);
+    }
+}
+
+@-ms-keyframes fadetable {
+    0% {
+        opacity: 0;
+        -ms-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -ms-transform: translate(0px, 0px);
+    }
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes neon2 {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
+}
+
+@keyframes ifram {
+    0% {
+        opacity: 0;
+        transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
+}
+
+@-moz-keyframes ifram {
+    0% {
+        opacity: 0;
+        -moz-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: translate(0px, 0px);
+    }
+}
+
+@-webkit-keyframes ifram {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0px, 0px);
+    }
+}
+
+@-o-keyframes ifram {
+    0% {
+        opacity: 0;
+        -o-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -o-transform: translate(0px, 0px);
+    }
+}
+
+@-ms-keyframes ifram {
+    0% {
+        opacity: 0;
+        -ms-transform: translate(0px, -25px);
+    }
+    100% {
+        opacity: 1;
+        -ms-transform: translate(0px, 0px);
+    }
+}
