@@ -2,10 +2,8 @@ import React ,{Component} from 'react'
 import { Row, Col } from 'antd';
 import { Carousel } from 'antd';
 import { Collapse } from 'antd';
-import { Spin } from 'antd';
-import {
-	Form, Icon, Input, Button
-} from 'antd';
+
+
 
 
 import './about.css'
@@ -98,30 +96,40 @@ class About extends Component{
 
 	}
 	enviarForm(e){
+		e.preventDefault()
 
+		let obj={}
+		obj.name=this.state.user
+		obj.pass=this.state.pass
 
-   fetch(`http://localhost:4000/usuarios`,{method:"POST"}).then(res=>{
-			let obj = {}
-			obj.user = this.state.user
-			obj.pass = this.state.pass
-			console.warn("data", obj)
-     })
+		console.warn("submit",obj)
+  /* fetch(`http://localhost:4000/usuarios`,data,{method:"POST"}).then(res=>{
+
+	    this.setState({
+				messaje:res.data
+			})
+
+		})
+*/
+
   }
 
 	cambioForm(e,type){
+		const ImputValue=e.target.value
    switch (type) {
 		 case "user":{
 			 this.setState({
-				 user:e.target.value
+				 user: ImputValue
 			 })
-		 }case"password":{
-			 this.setState({
-				 pass:e.target.value
-			 })
+		 } case "pass": {
+      this.setState({
+				pass: ImputValue
+			})
 		 }
+			
+		 }
+		 
 
-
-	 }
 
 	}
     render(){
@@ -228,28 +236,16 @@ class About extends Component{
 												</Panel>
 												<Panel header={<div><a id="li3" href="#top"><h1 id="h1panel3" style={{ color: "white" }}><strong style={{ color: "orange" }}>L</strong>ogin</h1></a></div>} key="3">
 													<blockquote className="blockquote text-center">
-														<Form id="formabout"  style={{width:"50%",margin:"auto"}} className="login-form">
-															<Form.Item>
+														<form id="formabout" onSubmit={this.enviarForm}>
+                                <input type="text" name="name" value={this.state.user} onChange={(e)=>this.cambioForm(e,"user")}/>
+																<br/>
+															  <br/>
+															<input type="text" name="pass" value={this.state.pass} onChange={(e)=>this.cambioForm(e,"pass")} />
+															  <br/>
+															  <br/>
+															<input type="submit" className="btn btn-warning"/>
 
-																	<Input prefix={<Icon type="user"  style={{ color: 'rgba(0,0,0,.25)' }} />} type="user" onChange={(e)=>this.cambioForm(e,"user")} placeholder="Username" />
-
-															</Form.Item>
-															<Form.Item>
-
-																<Input prefix={<Icon type="lock"  style={{ color: 'rgba(0,0,0,.25)' }} />} onChange={(e)=>this.cambioForm(e,"password")} type="password" placeholder="Password" />
-
-															</Form.Item>
-															<Form.Item>
-
-
-
-																<a className="login-form-forgot" href="#top">Forgot password</a><br></br>
-																<Button type="primary" htmlType="submit" onClick={()=>this.enviarForm()} className="login-form-button">
-																	Log in
-                                </Button>
-																Or <a href="#top">register now!</a>
-															</Form.Item>
-														</Form>
+														</form>
 													</blockquote>
 												</Panel>
 											</Collapse>
