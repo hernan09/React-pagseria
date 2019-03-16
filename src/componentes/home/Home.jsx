@@ -2,6 +2,7 @@ import React ,{Component} from 'react'
 import { Row, Col } from 'antd';
 import { Collapse } from 'antd';
 
+
 import './home.css'
 
 const Panel = Collapse.Panel
@@ -33,7 +34,14 @@ componentDidMount(){
   render(){
 	  let pelis=this.state.pelis.map((peli,i)=>{
 		  return(
-			<img id="imgHome" src={peli.img} key={i} style={{width:300,height:300}} alt=""></img>
+
+
+						<img id="imgHome" key={i} src={peli.img} style={{ width: 300, height: 300 }} alt=""></img>
+
+
+
+
+
 		  )
 	  })
       return(

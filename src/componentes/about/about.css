@@ -21,10 +21,9 @@
     width: 50%;
 }
 
-#h1bout:hover {
-    -webkit-animation: neon2 1s ease-in-out infinite alternate;
-    -moz-animation: neon2 1s ease-in-out infinite alternate;
-    animation: neon2 1s ease-in-out infinite alternate;
+#h1bout {
+    -webkit-animation: tracking-in-contract .8s cubic-bezier(.215, .61, .355, 1.000) both;
+    animation: tracking-in-contract .8s cubic-bezier(.215, .61, .355, 1.000) both
 }
 
 #block3 {
@@ -40,6 +39,11 @@
 #block3>div {
     width: 100%;
     height: 100px;
+}
+
+#carro {
+    -webkit-animation: swing-in-left-fwd .7s cubic-bezier(.175, .885, .32, 1.275) both;
+    animation: swing-in-left-fwd .7s cubic-bezier(.175, .885, .32, 1.275) both
 }
 
 #card:hover {
@@ -223,15 +227,6 @@
     }
 }
 
-@keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-    }
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-    }
-}
-
 @keyframes ifram {
     0% {
         opacity: 0;
@@ -286,3 +281,74 @@
         -ms-transform: translate(0px, 0px);
     }
 }
+
+
+/*keyframe titulo*/
+
+@-webkit-keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0
+    }
+    40% {
+        opacity: .6
+    }
+    100% {
+        letter-spacing: normal;
+        opacity: 1
+    }
+}
+
+@keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0
+    }
+    40% {
+        opacity: .6
+    }
+    100% {
+        letter-spacing: normal;
+        opacity: 1
+    }
+}
+
+
+/*carrousel*/
+
+@-webkit-keyframes swing-in-left-fwd {
+    0% {
+        -webkit-transform: rotateY(100deg);
+        transform: rotateY(100deg);
+        -webkit-transform-origin: left;
+        transform-origin: left;
+        opacity: 0
+    }
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+        -webkit-transform-origin: left;
+        transform-origin: left;
+        opacity: 1
+    }
+}
+
+@keyframes swing-in-left-fwd {
+    0% {
+        -webkit-transform: rotateY(100deg);
+        transform: rotateY(100deg);
+        -webkit-transform-origin: left;
+        transform-origin: left;
+        opacity: 0
+    }
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+        -webkit-transform-origin: left;
+        transform-origin: left;
+        opacity: 1
+    }
+}
+
+
+/*animacion fondo*/

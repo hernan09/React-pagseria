@@ -12,6 +12,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    res.setHeader('Content-Type', 'application/json')
 
     next()
 })
@@ -56,8 +57,9 @@ app.delete("/delete/:id", (req, res) => {
 
 })
 
-app.get("/pelis/:id", (req, res) => {
+app.get("/pelis/id", (req, res) => {
     let id = req.params.id
+
     peliculas.findById(id, (err, pelicula) => {
 
         if (err) res.status(500).send(`${err}`)
@@ -73,12 +75,12 @@ app.get("/pelis/:id", (req, res) => {
 app.post("/usuarios", (req, res) => {
 
     let usuario = new usuarios()
-    usuario.name = req.body.user
+    usuario.user = req.body.user
     usuario.pass = req.body.pass
     usuario.save((err, usertSave) => {
 
         if (err) res.status(500).send(`${err}`)
-        res.status(200).json({
+        res.status(200).send({
             usertSave
         })
     })

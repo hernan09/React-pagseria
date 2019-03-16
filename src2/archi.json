@@ -1,31 +1,32 @@
 [{
+
         "name": "Durotan",
         "url": "https://www.youtube.com/embed/J7VT7NG7e38",
         "img": "http://localhost:4000/videos/durotan.jpg"
     },
     {
+
         "name": "silvana",
         "url": "https://www.youtube.com/embed/TVp7yLfnmrE",
         "img": "http://localhost:4000/videos/silvana.jpg"
     },
     {
+
         "name": "kilrog",
         "url": "https://www.youtube.com/embed/fRlokbOelfg",
         "img": "http://localhost:4000/videos/kilrog.jpg"
     },
     {
+
         "name": "Jaina",
         "url": "https://www.youtube.com/embed/Fo7XPvwRgG8",
         "img": "http://localhost:4000/videos/jaina.jpg"
     },
     {
-        "name": "kadgar",
-        "url": "https://www.youtube.com/embed/UW5IYrgOgYU",
-        "img": "http://localhost:4000/videos/kadgar.jpg"
-    },
-    {
+
         "name": "kadgar",
         "url": "https://www.youtube.com/embed/UW5IYrgOgYU",
         "img": "http://localhost:4000/videos/kadgar.jpg"
     }
+
 ]

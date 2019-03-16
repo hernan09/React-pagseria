@@ -28,11 +28,13 @@ class About extends Component{
 			pelis:[],
 			loading:false,
 			url2:[],
-			peli1:""
+			peli1:"",
+			resPost:{}
 		}
 
 		this.handleClick=this.handleClick.bind(this)
-		this.cambioForm=this.cambioForm.bind(this)
+		this.cambioFormUser=this.cambioFormUser.bind(this)
+		this.cambioFormPass = this.cambioFormPass.bind(this)
 		this.enviarForm = this.enviarForm.bind(this)
 	}
 	handleClick(){
@@ -55,7 +57,9 @@ class About extends Component{
 
 
 	handle(peli2){
-    fetch(`http://localhost:4000/pelis/:${peli2._id}`,{method:"GET"}).then(res=>{
+
+		fetch(`http://localhost:4000/pelis/${peli2._id}`,{method:"get"}).then(res=>{
+			console.log(peli2._id)
 
 			this.setState({
         loading: true,
@@ -103,33 +107,33 @@ class About extends Component{
 		obj.pass=this.state.pass
 
 		console.warn("submit",obj)
-  /* fetch(`http://localhost:4000/usuarios`,data,{method:"POST"}).then(res=>{
+
+
+	 fetch(`http://localhost:4000/usuarios`,
+
+	   {body:obj,method:"POST"}).then(res=>{
 
 	    this.setState({
-				messaje:res.data
+				resPost:res.obj
 			})
 
 		})
-*/
+
 
   }
 
-	cambioForm(e,type){
-		const ImputValue=e.target.value
-   switch (type) {
-		 case "user":{
-			 this.setState({
-				 user: ImputValue
-			 })
-		 } case "pass": {
-      this.setState({
-				pass: ImputValue
-			})
-		 }
-			
-		 }
-		 
+	cambioFormUser(e){
+  this.setState({
+		user:e.target.value,
 
+	})
+
+}
+	cambioFormPass(e) {
+		this.setState({
+			pass: e.target.value,
+
+		})
 
 	}
     render(){
@@ -206,12 +210,12 @@ class About extends Component{
 							<Col span={24}>
 							{this.state.visor && <blockquote id="tabla" className="blockquote text-center">
 
-											<Collapse id="collapse" accordion defaultActiveKey={['1']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
+											<Collapse id="collapse" accordion defaultActiveKey={['3']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
 												<Panel id="panel" header={<div><a id="li1" href="#top"><h1 id="h1panel" style={{ color: "white" }}><strong style={{
 													color: "orange"
 												}}>C</strong>arrousel</h1></a></div>} key="1" style={{color:"black"}}>
-												<div>
-														<Carousel id="carro" autoplay effect="fade">
+													<div id="carro">
+														<Carousel  autoplay effect="fade">
 															{pelis}
 														</Carousel>
 
@@ -237,13 +241,13 @@ class About extends Component{
 												<Panel header={<div><a id="li3" href="#top"><h1 id="h1panel3" style={{ color: "white" }}><strong style={{ color: "orange" }}>L</strong>ogin</h1></a></div>} key="3">
 													<blockquote className="blockquote text-center">
 														<form id="formabout" onSubmit={this.enviarForm}>
-                                <input type="text" name="name" value={this.state.user} onChange={(e)=>this.cambioForm(e,"user")}/>
+                                <input type="text" name="user" value={this.state.user} onChange={this.cambioFormUser}/>
 																<br/>
 															  <br/>
-															<input type="text" name="pass" value={this.state.pass} onChange={(e)=>this.cambioForm(e,"pass")} />
+															<input type="passsword" name="pasword" value={this.state.pass} onChange={this.cambioFormPass} />
 															  <br/>
 															  <br/>
-															<input type="submit" className="btn btn-warning"/>
+															<input type="submit" value="enviar" className="btn btn-warning"/>
 
 														</form>
 													</blockquote>
@@ -304,6 +308,7 @@ class About extends Component{
 
 
 						</Row>
+
 					</div>
 
         )

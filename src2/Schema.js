@@ -4,6 +4,7 @@ const schema = mongoose.Schema
 
 
 let peliculas = new schema({
+
     name: { type: String },
     url: { type: String },
     img: { type: String }

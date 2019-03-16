@@ -2,7 +2,7 @@ const mongose = require('mongoose')
 const schema = mongose.Schema
 
 let users = new schema({
-    name: { type: String },
+    user: { type: String },
     pass: { type: String }
 
 })
