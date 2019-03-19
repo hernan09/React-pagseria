@@ -8,7 +8,7 @@ const app = express()
 
 app.use((req, res, next) => {
 
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
@@ -65,6 +65,7 @@ app.get("/pelis/id", (req, res) => {
         if (err) res.status(500).send(`${err}`)
 
         if (!pelicula) res.status(404).send(`no se encontro la pelicula`)
+
         res.status(200).send({
             pelicula
         })
@@ -74,9 +75,12 @@ app.get("/pelis/id", (req, res) => {
 
 app.post("/usuarios", (req, res) => {
 
-    let usuario = new usuarios()
-    usuario.user = req.body.user
-    usuario.pass = req.body.pass
+    console.log("req", req)
+    let usuario = new usuarios({
+        user: req.body,
+        pass: req.body
+    })
+
     usuario.save((err, usertSave) => {
 
         if (err) res.status(500).send(`${err}`)

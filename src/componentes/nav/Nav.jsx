@@ -32,7 +32,7 @@ class Meenu extends Component {
                     <Menu.Item key="app" >
                         <Link  to="/about"></Link>About
         </Menu.Item>
-                    <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" />Navigation Three - Submenu</span>}>
+                    <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" /><Link to="/navigation">Navigation</Link></span>}>
 
 
                     </SubMenu>

@@ -6,6 +6,7 @@ import { Collapse } from 'antd';
 
 
 
+
 import './about.css'
 
 
@@ -58,7 +59,8 @@ class About extends Component{
 
 	handle(peli2){
 
-		fetch(`http://localhost:4000/pelis/${peli2._id}`,{method:"get"}).then(res=>{
+
+		fetch(`http://localhost:4000/pelis/${peli2._id}`,{method:"GET"}).then(res=>{
 			console.log(peli2._id)
 
 			this.setState({
@@ -103,21 +105,27 @@ class About extends Component{
 		e.preventDefault()
 
 		let obj={}
-		obj.name=this.state.user
+		obj.user=this.state.user
 		obj.pass=this.state.pass
 
-		console.warn("submit",obj)
 
 
-	 fetch(`http://localhost:4000/usuarios`,
 
-	   {body:obj,method:"POST"}).then(res=>{
 
-	    this.setState({
-				resPost:res.obj
+		fetch('http://localhost:4000/usuarios', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({obj})
+		}).then(res=>{
+			console.log(res)
+      this.setState({
+				resPost:res
 			})
-
 		})
+
 
 
   }
@@ -178,8 +186,9 @@ class About extends Component{
 
 						<Row>
 							<Col span={24}>
-								<blockquote className="blockquote text-center" style={{marginTop:100,color:"white"}}>
-									<h1 id="h1bout" style={{ color: "white" }}><strong style={{color:"orange"}}>H</strong>ark</h1>
+
+								<blockquote id="titulo" className="blockquote text-center" style={{marginTop:100,color:"white"}}>
+									<h1 id="h1bout" style={{ color: "white" }}><strong style={{color:"orange"}}>W</strong>elcome</h1>
 
 									<p>The following is <strong>rendered as bold text</strong></p>
 
@@ -210,18 +219,9 @@ class About extends Component{
 							<Col span={24}>
 							{this.state.visor && <blockquote id="tabla" className="blockquote text-center">
 
+
 											<Collapse id="collapse" accordion defaultActiveKey={['3']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
-												<Panel id="panel" header={<div><a id="li1" href="#top"><h1 id="h1panel" style={{ color: "white" }}><strong style={{
-													color: "orange"
-												}}>C</strong>arrousel</h1></a></div>} key="1" style={{color:"black"}}>
-													<div id="carro">
-														<Carousel  autoplay effect="fade">
-															{pelis}
-														</Carousel>
-
-												</div>
-
-												</Panel>
+												
 												<Panel header={<div><a id="li2" href="#top"><h1 id="h1panel2" style={{ color: "white" }}><strong style={{ color: "orange" }}>V</strong>ideos</h1></a></div>} key="2">
 												<table className="table table-hover">
 													<thead>

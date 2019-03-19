@@ -7,4 +7,4 @@ let users = new schema({
 
 })
 
-module.exports = mongose.model("usuario", users)
+module.exports = mongose.model("usuarios", users)
