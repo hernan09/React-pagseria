@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
-
+const pagination = require('mongoose-paginate-v2')
 const schema = mongoose.Schema
+
 
 
 let peliculas = new schema({
@@ -10,6 +11,10 @@ let peliculas = new schema({
     img: { type: String }
 
 })
+peliculas.plugin(pagination)
+
+let myModel = mongoose.model('peliculas', peliculas);
 
 
-module.exports = mongoose.model('peliculas', peliculas)
+
+module.exports = myModel

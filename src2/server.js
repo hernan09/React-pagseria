@@ -34,16 +34,29 @@ mongoose.connect("mongodb://localhost:27017/peliculas", {
     })
 })
 
-app.get('/pelis', (req, res) => {
 
+app.get(`/pelis`, (req, res) => {
 
-    peliculas.find({}, (err, peliculas) => {
-        if (err) res.status(500).send(`${err}`)
-        res.status(200).json({
-            pelis: peliculas
+    var pageOptions = {
+        page: parseInt(req.query.page || 0),
+        limit: parseInt(req.query.limit || 10)
+    }
 
+    peliculas.find()
+        .skip(pageOptions.page * pageOptions.limit)
+        .limit(pageOptions.limit)
+        .exec(function(err, peliculas) {
+            if (err) {
+                res.status(500).json(err);
+                return;
+            };
+            res.status(200).json({
+                pelis: peliculas
+            });
         })
-    })
+
+
+
 
 })
 

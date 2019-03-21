@@ -8,5 +8,10 @@
         "start": "nodemon server.js"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+
+        "mongoose-paginate-v2": "^1.0.24"
+
+    }
 }

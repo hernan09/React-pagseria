@@ -1,13 +1,10 @@
 import React ,{Component} from 'react'
 import { Row, Col } from 'antd';
-import { Carousel } from 'antd';
+import { Pagination } from 'antd';
 import { Collapse } from 'antd';
-
-
-
-
-
 import './about.css'
+
+
 
 
 
@@ -19,8 +16,8 @@ const Panel = Collapse.Panel;
 
 
 class About extends Component{
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state={
 			tabla:false,
 			visor:true,
@@ -30,13 +27,12 @@ class About extends Component{
 			loading:false,
 			url2:[],
 			peli1:"",
-			resPost:{}
+			resPost:{},
+			page:0
 		}
 
 		this.handleClick=this.handleClick.bind(this)
-		this.cambioFormUser=this.cambioFormUser.bind(this)
-		this.cambioFormPass = this.cambioFormPass.bind(this)
-		this.enviarForm = this.enviarForm.bind(this)
+
 	}
 	handleClick(){
    this.setState({
@@ -47,15 +43,25 @@ class About extends Component{
 	 })
 	}
 	componentDidMount(){
-		fetch('http://localhost:4000/pelis').then(resp => resp.json()).then(pelis => {
+		this.setState({
+			data:[],
+			loading:true
+		})
+		fetch(`http://localhost:4000/pelis?page=${this.state.page}&limit=6`).then(resp => resp.json()).then(pelis => {
 			this.setState({
 
 				pelis: pelis.pelis,
+				loading:false
 			})
+			console.log(pelis)
 
 		})
-   	}
+		 }
 
+
+     paginar(){
+	   	console.log("abc")
+	   }
 
 	handle(peli2){
 
@@ -101,68 +107,40 @@ class About extends Component{
 
 
 	}
-	enviarForm(e){
-		e.preventDefault()
 
-		let obj={}
-		obj.user=this.state.user
-		obj.pass=this.state.pass
-
-
-
-
-
-		fetch('http://localhost:4000/usuarios', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({obj})
-		}).then(res=>{
-			console.log(res)
-      this.setState({
-				resPost:res
-			})
-		})
-
-
-
-  }
-
-	cambioFormUser(e){
-  this.setState({
-		user:e.target.value,
-
-	})
-
-}
-	cambioFormPass(e) {
-		this.setState({
-			pass: e.target.value,
-
-		})
-
-	}
     render(){
 
 
 
 
     let pelis2=this.state.pelis.map((peli2,i)=>{
+        if(this.state.loading){
+					return(
+						<div className="d-flex justify-content-center">
+							<div className="spinner-border" role="status">
+								<span className="sr-only">Loading...</span>
+							</div>
+						</div>
+					)
+				}else{
+					return (
 
-				 return (
 
 
-					 <tr key={i} id="tabla" className="table-default">
+							<tr key={i} id="tabla" className="table-default">
 
-						 <td><span className="badge badge-pill badge-warning">{peli2.name}</span></td>
-						 <td><img style={{ width: 100, height: 100 }} src={peli2.img} alt=""></img></td>
-						 <td><a href="#top" className="btn btn-info" onClick={() => this.handle(peli2)}>View</a></td>
-						 <td><a href="#top" className="btn btn-danger" onClick={() => this.handleDelete(peli2)}>Delete</a></td>
-					 </tr>
+								<td><span className="badge badge-pill badge-warning">{peli2.name}</span></td>
+								<td><img style={{ width: 100, height: 100 }} src={peli2.img} alt=""></img></td>
+								<td><a href="#top" className="btn btn-info" onClick={() => this.handle(peli2)}>View</a></td>
+								<td><a href="#top" className="btn btn-danger" onClick={() => this.handleDelete(peli2)}>Delete</a></td>
+							</tr>
 
-				 )
+
+
+
+					)
+				}
+
 
 
 
@@ -217,41 +195,30 @@ class About extends Component{
 						<Row>
 
 							<Col span={24}>
+
 							{this.state.visor && <blockquote id="tabla" className="blockquote text-center">
 
 
-											<Collapse id="collapse" accordion defaultActiveKey={['3']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
-												
+											<Collapse id="collapse" accordion defaultActiveKey={['2']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
+
 												<Panel header={<div><a id="li2" href="#top"><h1 id="h1panel2" style={{ color: "white" }}><strong style={{ color: "orange" }}>V</strong>ideos</h1></a></div>} key="2">
+													<Pagination defaultCurrent={1} total={50} onClick={this.paginar}/>
 												<table className="table table-hover">
 													<thead>
 														<tr>
 															<th scope="col">Name</th>
 															<th scope="col">Imagen</th>
 															<th scope="col">View</th>
-																<th scope="col">Delete</th>
+															<th scope="col">Delete</th>
 														</tr>
 													</thead>
+
 														<tbody>
                               {pelis2}
-
-														</tbody>
+                            </tbody>
 												</table>
 												</Panel>
-												<Panel header={<div><a id="li3" href="#top"><h1 id="h1panel3" style={{ color: "white" }}><strong style={{ color: "orange" }}>L</strong>ogin</h1></a></div>} key="3">
-													<blockquote className="blockquote text-center">
-														<form id="formabout" onSubmit={this.enviarForm}>
-                                <input type="text" name="user" value={this.state.user} onChange={this.cambioFormUser}/>
-																<br/>
-															  <br/>
-															<input type="passsword" name="pasword" value={this.state.pass} onChange={this.cambioFormPass} />
-															  <br/>
-															  <br/>
-															<input type="submit" value="enviar" className="btn btn-warning"/>
 
-														</form>
-													</blockquote>
-												</Panel>
 											</Collapse>
 
 
@@ -288,9 +255,9 @@ class About extends Component{
 						</Row>
 						<Row>
 							<Col span={24}>
-								<blockquote className="blockquote text-center" style={{color:"white",height:400}}>
-									<p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-									<footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+								<blockquote className="blockquote text-center" style={{color:"white",height:300,marginBottom:300}}>
+											<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26245.382601953457!2d-58.38426796392878!3d-34.688206010168344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcccd2a95284c3%3A0xc40db4ad11bd87eb!2sGerli%2C+Buenos+Aires!5e0!3m2!1ses-419!2sar!4v1553025901219" width="400" height="300" ></iframe>
+
 								</blockquote>
 							</Col>
 

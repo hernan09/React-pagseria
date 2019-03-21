@@ -25,7 +25,18 @@ class Navigation extends Component{
          return(
 				 <div>
 						 <div id="navigation">
-							 <Carousel style={{width:"100%",height:300}} autoplay effect="fade">
+							 <blockquote className="blockquote text-center">
+								 <div className="jumbotron" style={{ height: "100%" }}>
+									 <h1 className="display-3">Hello, world!</h1>
+									 <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+									 <hr className="my-4"></hr>
+									 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+									 <p className="lead">
+										 <a className="btn btn-dark btn-default" href="#" role="button">Learn more</a>
+									 </p>
+								 </div>
+							 </blockquote>
+					 <Carousel style={{ width: "100%", height: 300 }} autoplay effect="fade" >
 								 {pelis}
 							 </Carousel>
 							 <div>
@@ -36,7 +47,7 @@ class Navigation extends Component{
 										 <hr className="my-4"></hr>
 										 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 										 <p className="lead">
-											 <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+											 <a className="btn btn-dark btn-default" href="#" role="button">Learn more</a>
 										 </p>
 									 </div>
 								 </blockquote>
