@@ -3,8 +3,10 @@ const peliculas = require('./Schema')
 const usuarios = require('./schemaUsers')
 const mongoose = require('mongoose')
 const path = require('path')
-
+const BodyParser = require('body-parser')
 const app = express()
+
+
 
 app.use((req, res, next) => {
 
@@ -16,7 +18,10 @@ app.use((req, res, next) => {
 
     next()
 })
-
+app.use(BodyParser.json())
+app.use(BodyParser.urlencoded({
+    extended: true
+}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 let port = process.env.PORT || 4000
@@ -38,7 +43,7 @@ mongoose.connect("mongodb://localhost:27017/peliculas", {
 app.get(`/pelis`, (req, res) => {
 
     var pageOptions = {
-        page: parseInt(req.query.page || 0),
+        page: parseInt(req.query.page || 1),
         limit: parseInt(req.query.limit || 10)
     }
 
@@ -88,10 +93,12 @@ app.get("/pelis/id", (req, res) => {
 
 app.post("/usuarios", (req, res) => {
 
-    console.log("req", req)
+    console.log("req.body.obj", req.body.obj)
+
     let usuario = new usuarios({
-        user: req.body,
-        pass: req.body
+        /* user: req.body.user,
+         pass: req.body.pass*/
+        obj: req.body.obj
     })
 
     usuario.save((err, usertSave) => {

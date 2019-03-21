@@ -62,13 +62,8 @@ class NavTabs extends React.Component {
 		obj.user = this.state.user
 		obj.pass = this.state.pass
 
-
-
-
-
-		fetch('http://localhost:4000/usuarios', {
+      fetch('http://localhost:4000/usuarios', {
 			method: 'POST',
-
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'

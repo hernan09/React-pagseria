@@ -1,6 +1,6 @@
 import React ,{Component} from 'react'
 import { Row, Col } from 'antd';
-import { Pagination } from 'antd';
+
 import { Collapse } from 'antd';
 import './about.css'
 
@@ -28,10 +28,11 @@ class About extends Component{
 			url2:[],
 			peli1:"",
 			resPost:{},
-			page:0
+			page:1
 		}
 
 		this.handleClick=this.handleClick.bind(this)
+		this.paginar=this.paginar.bind(this)
 
 	}
 	handleClick(){
@@ -60,7 +61,10 @@ class About extends Component{
 
 
      paginar(){
-	   	console.log("abc")
+      this.setState({
+				page:this.state.page+1
+			})
+			console.log(this.state.page)
 	   }
 
 	handle(peli2){
@@ -152,7 +156,7 @@ class About extends Component{
 			return(
 
 
-        <img key={i} src={peli.img} style={{width:"50%"}} alt=""/>
+        <img key={i} src={peli.img} style={{width:"50%"}} alt="no se encuentra la imagen"/>
 
 
 
@@ -202,7 +206,7 @@ class About extends Component{
 											<Collapse id="collapse" accordion defaultActiveKey={['2']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
 
 												<Panel header={<div><a id="li2" href="#top"><h1 id="h1panel2" style={{ color: "white" }}><strong style={{ color: "orange" }}>V</strong>ideos</h1></a></div>} key="2">
-													<Pagination defaultCurrent={1} total={50} onClick={this.paginar}/>
+												<button className="btn btn-success" onClick={this.paginar}>Siguiente</button>
 												<table className="table table-hover">
 													<thead>
 														<tr>
