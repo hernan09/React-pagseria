@@ -43,7 +43,7 @@ mongoose.connect("mongodb://localhost:27017/peliculas", {
 app.get(`/pelis`, (req, res) => {
 
     var pageOptions = {
-        page: parseInt(req.query.page || 1),
+        page: parseInt(req.query.page || 0),
         limit: parseInt(req.query.limit || 10)
     }
 
@@ -57,7 +57,10 @@ app.get(`/pelis`, (req, res) => {
             };
             res.status(200).json({
                 pelis: peliculas
+
             });
+            console.log(res)
+
         })
 
 
@@ -93,11 +96,10 @@ app.get("/pelis/id", (req, res) => {
 
 app.post("/usuarios", (req, res) => {
 
-    console.log("req.body.obj", req.body.obj)
+
 
     let usuario = new usuarios({
-        /* user: req.body.user,
-         pass: req.body.pass*/
+
         obj: req.body.obj
     })
 

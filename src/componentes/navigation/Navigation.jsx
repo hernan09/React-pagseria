@@ -1,67 +1,119 @@
 import React ,{Component} from 'react'
-import { Carousel } from 'antd';
+
 import './navigation.css'
+
+
+
+
+
 
 class Navigation extends Component{
    constructor(){
        super()
        this.state={
-        pelis:[]
-       }
-	 }
-	 componentDidMount = () => {
-		  fetch(`http://localhost:4000/pelis`).then(res=>res.json()).then(pelis=>{
-        this.setState({
-					pelis:pelis.pelis
-				})
+				mostrar:false,
+				user:"",
+				pass:"",
+				respPost:{},
+
+			 }
+			 this.aparecer=this.aparecer.bind(this)
+			 this.cambiarUser=this.cambiarUser.bind(this)
+			 this.cambiarPass = this.cambiarPass.bind(this)
+			 this.enviar=this.enviar.bind(this)
+
+
+			}
+
+
+
+aparecer(){
+	this.setState({
+		mostrar:!this.state.mostrar
+	})
+}
+cambiarUser(e){
+ this.setState({
+	 user:e.target.value
+ })
+
+}
+
+cambiarPass(e) {
+ this.setState({
+	 pass:e.target.value
+ })
+}
+
+enviar(e){
+
+		e.preventDefault()
+
+		let obj = {}
+
+		obj.user = this.state.user
+
+		obj.pass = this.state.pass
+		fetch(`http://localhost:4000/usuarios`, {
+			method: "POST", headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}, body: JSON.stringify({ obj })
+		}).then(res => {
+
+			this.setState({
+				respPost: res
 			})
-	 }
+
+			console.log(this.state.respPost)
+		})
+
+}
 
 
    render(){
-		 let pelis=this.state.pelis.map((peli,i)=>{
-			 return(<img key={i} src={peli.img}></img>)
-		 })
+
+
          return(
-				 <div>
-						 <div id="navigation">
-							 <blockquote className="blockquote text-center">
-								 <div className="jumbotron" style={{ height: "100%" }}>
-									 <h1 className="display-3">Hello, world!</h1>
-									 <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-									 <hr className="my-4"></hr>
-									 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-									 <p className="lead">
-										 <a className="btn btn-dark btn-default" href="#" role="button">Learn more</a>
-									 </p>
+		 <div id="body">
+
+							 <div className="contenedor">
+								 <div className="palanca">
+									 <span id="crear"onClick={this.aparecer}>Crear Cuenta</span>
 								 </div>
-							 </blockquote>
-					 <Carousel style={{ width: "100%", height: 300 }} autoplay effect="fade" >
-								 {pelis}
-							 </Carousel>
-							 <div>
-								 <blockquote className="blockquote text-center">
-									 <div className="jumbotron" style={{ height: "100%" }}>
-										 <h1 className="display-3">Hello, world!</h1>
-										 <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-										 <hr className="my-4"></hr>
-										 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-										 <p className="lead">
-											 <a className="btn btn-dark btn-default" href="#" role="button">Learn more</a>
-										 </p>
-									 </div>
-								 </blockquote>
+								 <div className="formulario">
+									 <h2>Iniciar sesion</h2>
+									 <form onSubmit={this.enviar}>
+									 <input type="text" className="form-control" value={this.state.user} name="user" onChange={this.cambiarUser} placeholder="Usuario" ></input>
 
+									 <input type="password" className="form-control" value={this.state.pass} name="pass" onChange={this.cambiarPass} placeholder="Contraseña" ></input>
 
+										 <input type="submit" className="btn btn-warning" value="Login"></input>
+									 </form>
+								 </div>
+								 {this.state.mostrar && < div className="formulario2">
+									 <h2>Crear Cuenta</h2>
+									 <form >
+									 <input type="text" className="form-control" placeholder="Usuario" ></input>
+									 <input type="password" className="form-control" placeholder="Contraseña" ></input>
+									 <input type="email" className="form-control" placeholder="Correo Electronico" ></input>
+									 <input type="text" className="form-control" placeholder="Telefono"></input>
+										 <input type="submit" className="btn btn-warning" value="Registrarse"></input>
+									 </form>
+								 </div>}
+								 <div className="reset-password">
+									 <a href="#top">Olvido su contraseña?</a>
+								 </div>
 							 </div>
 
-						 </div>
 
-				 </div>
 
-				 )
-   }
+		 </div>
 
+
+		 )
+
+}
 }
 
 export default Navigation

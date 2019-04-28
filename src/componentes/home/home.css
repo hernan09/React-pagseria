@@ -1,11 +1,8 @@
 #home {
     width: 100%;
     height: 100%;
-    background-image: url("/imagenes/colmillo.jpg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
+    background-color: white;
+    color: black;
     opacity: 1;
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
@@ -19,13 +16,42 @@
 }
 
 #h1home {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     -webkit-animation: tracking-in-contract .9s cubic-bezier(.215, .61, .355, 1.000) both;
     animation: tracking-in-contract .9s cubic-bezier(.215, .61, .355, 1.000) both
+}
+
+#encabezado {
+    background-color: white;
+}
+
+#encabezado>p {
+    color: white;
+    letter-spacing: 2px;
 }
 
 .jumbotron2 {
     width: 50%;
     margin: auto;
+}
+
+.jumbotron2>p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#piepag {
+    height: 200px;
+    background-image: url("/imagenes/colmillo.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+#piepag>button {
+    width: 200px;
+    margin-top: 80px;
 }
 
 @keyframes fadeInOpacity {

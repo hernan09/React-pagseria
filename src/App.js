@@ -8,9 +8,9 @@ import Routes from './Router'
 
 class App extends Component {
     render() {
-        return ( < Routes id = "App" >
-            <
-            /Routes>
+        return(<Routes id = "App">
+        
+        </Routes>
         );
     }
 }

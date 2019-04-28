@@ -10,29 +10,16 @@ import Footer from './componentes/footer/Footer'
 
 const Routes = () => (
 
-    <
-    Router >
-    <
-    div >
-    <
-    Nav > < /Nav>  <
-    Route exact path = "/"
-    component = { Home }
-    />  <
-    Route exact path = "/about"
-    component = { About }
-    />  <
-    Route exact path = "/navigation"
-    component = { Navigation }
-    /> <
-    Footer > < /Footer>
+ <Router>
+  <div>
+    <Nav></Nav>  
+    <Route exact path = "/"component = { Home }/> 
+    <Route exact path = "/about" component = { About }/> 
+    <Route exact path = "/navigation"component = { Navigation }/>
+    <Footer></Footer>
+  </div>
 
 
-    <
-    /div>
-
-
-    <
-    /Router>
+ </Router>
 )
 export default Routes

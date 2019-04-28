@@ -20,18 +20,18 @@ class Meenu extends Component {
     render(){
 
         return(
-            <Affix offsetTop={0} style={{ width: "100%"}} onChange={affixed => console.log(affixed)}>
-                <Menu style={{ backgroundColor: "black", color: "white" }}
+            <Affix  offsetTop={0} style={{ width: "100%"}} onChange={affixed => console.log(affixed)}>
+                <Menu id="menu" style={{ backgroundColor: "black", color: "white" }}
 
                     selectedKeys={[this.state.current]}
                     mode="horizontal"
                 >
                     <Menu.Item key="mail">
                         <Link  to="/"></Link>Home
-        </Menu.Item>
+                    </Menu.Item>
                     <Menu.Item key="app" >
                         <Link  to="/about"></Link>About
-        </Menu.Item>
+                    </Menu.Item>
                     <SubMenu title={<span className="submenu-title-wrapper"><Icon type="setting" /><Link to="/navigation">Navigation</Link></span>}>
 
 

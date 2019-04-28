@@ -1,8 +1,6 @@
 import React,{Component} from 'react'
 import { Row, Col } from 'antd';
-import {
-	Form, Icon, Input, Button, Checkbox,
-} from 'antd';
+
 
 import './footer.css'
 import PropTypes from 'prop-types';
@@ -58,9 +56,9 @@ class NavTabs extends React.Component {
 	enviarForm(e) {
 		e.preventDefault()
 
-		let obj = {}
-		obj.user = this.state.user
-		obj.pass = this.state.pass
+		let obj={}
+		obj.user=this.state.user
+		obj.pass=this.state.pass
 
       fetch('http://localhost:4000/usuarios', {
 			method: 'POST',

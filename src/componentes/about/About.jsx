@@ -28,7 +28,7 @@ class About extends Component{
 			url2:[],
 			peli1:"",
 			resPost:{},
-			page:1
+			page:0
 		}
 
 		this.handleClick=this.handleClick.bind(this)
@@ -48,7 +48,7 @@ class About extends Component{
 			data:[],
 			loading:true
 		})
-		fetch(`http://localhost:4000/pelis?page=${this.state.page}&limit=6`).then(resp => resp.json()).then(pelis => {
+		fetch(`http://localhost:4000/pelis?page=${this.state.page}&limit=5`).then(resp => resp.json()).then(pelis => {
 			this.setState({
 
 				pelis: pelis.pelis,
@@ -56,14 +56,16 @@ class About extends Component{
 			})
 			console.log(pelis)
 
+
 		})
 		 }
 
 
-     paginar(){
+     paginar(e){
+
       this.setState({
-				page:this.state.page+1
-			})
+        page:e.target.value
+       })
 			console.log(this.state.page)
 	   }
 
@@ -85,7 +87,7 @@ class About extends Component{
 					tabla: !this.state.tabla
 
 				})
-			}, 2000);
+			}, 1000);
 
 
 
@@ -134,7 +136,7 @@ class About extends Component{
 							<tr key={i} id="tabla" className="table-default">
 
 								<td><span className="badge badge-pill badge-warning">{peli2.name}</span></td>
-								<td><img style={{ width: 100, height: 100 }} src={peli2.img} alt=""></img></td>
+								<td><img style={{ width:100, height: 100 }} src={peli2.img} alt=""></img></td>
 								<td><a href="#top" className="btn btn-info" onClick={() => this.handle(peli2)}>View</a></td>
 								<td><a href="#top" className="btn btn-danger" onClick={() => this.handleDelete(peli2)}>Delete</a></td>
 							</tr>
@@ -156,7 +158,7 @@ class About extends Component{
 			return(
 
 
-        <img key={i} src={peli.img} style={{width:"50%"}} alt="no se encuentra la imagen"/>
+        <img key={i} src={peli.img} style={{width:50}} alt="no se encuentra la imagen"/>
 
 
 
@@ -169,7 +171,7 @@ class About extends Component{
 						<Row>
 							<Col span={24}>
 
-								<blockquote id="titulo" className="blockquote text-center" style={{marginTop:100,color:"white"}}>
+								<blockquote id="titulo" className="blockquote text-center" style={{marginTop:50,color:"white"}}>
 									<h1 id="h1bout" style={{ color: "white" }}><strong style={{color:"orange"}}>W</strong>elcome</h1>
 
 									<p>The following is <strong>rendered as bold text</strong></p>
@@ -201,12 +203,15 @@ class About extends Component{
 							<Col span={24}>
 
 							{this.state.visor && <blockquote id="tabla" className="blockquote text-center">
-
-
-											<Collapse id="collapse" accordion defaultActiveKey={['2']} style={{width:"50%",margin:"auto",backgroundColor:"black",colorheader:"white"}}>
-
-												<Panel header={<div><a id="li2" href="#top"><h1 id="h1panel2" style={{ color: "white" }}><strong style={{ color: "orange" }}>V</strong>ideos</h1></a></div>} key="2">
-												<button className="btn btn-success" onClick={this.paginar}>Siguiente</button>
+                      	<nav style={{width:300}} aria-label="Page navigation example">
+														<ul className="pagination">
+															<li className="page-item"><a onClick={this.paginar} value={0} className="page-link" href="#top">Previous</a></li>
+															<li className="page-item"><a onClick={this.paginar} value={1} className="page-link" href="#top">1</a></li>
+															<li className="page-item"><a onClick={this.paginar} value={2} className="page-link" href="#top">2</a></li>
+															<li className="page-item"><a onClick={this.paginar} value={3} className="page-link" href="#top">3</a></li>
+															<li className="page-item"><a onClick={this.paginar} value={4} className="page-link" href="#top">Next</a></li>
+														</ul>
+													</nav>
 												<table className="table table-hover">
 													<thead>
 														<tr>
@@ -221,12 +226,12 @@ class About extends Component{
                               {pelis2}
                             </tbody>
 												</table>
-												</Panel>
-
-											</Collapse>
 
 
-										</blockquote> }
+
+
+
+					   	</blockquote> }
 
 										<div style={{ width: 90, margin: "auto",height:100 }}>
 											{this.state.loading && <div className="text-center">
